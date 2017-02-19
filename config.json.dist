@@ -1,0 +1,7 @@
+{
+    "driver": "mongo",          # Specify which driver you'd like to use (mongo, elasticsearch)
+    "hostname": "127.0.0.1",    # Host for database server
+    "port": "27017",            # Port for database (27017 for Mongo)
+    "username": "",             # If database is configured with auth
+    "password": "",
+}
