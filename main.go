@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"net/http"
 
+	"encoding/json"
+	"flag"
 	"github.com/auto-profile/server/driver"
 	stackimpact "github.com/auto-profile/stackimpact-go"
 	"github.com/gorilla/mux"
-	"flag"
-	"os"
 	"io/ioutil"
-	"encoding/json"
+	"os"
 )
 
 type Env struct {

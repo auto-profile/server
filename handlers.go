@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"net/http"
 
+	"encoding/json"
 	"github.com/gorilla/mux"
 	"io/ioutil"
-	"encoding/json"
 )
 
 func (e *Env) MetricHandler(w http.ResponseWriter, r *http.Request) {
