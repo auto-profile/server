@@ -10,7 +10,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func MetricHandler(w http.ResponseWriter, r *http.Request) {
+func (e *Env) MetricHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	fmt.Printf("Type of request: %s\n", vars["type"])
 	reader, err := gzip.NewReader(r.Body)
