@@ -5,6 +5,7 @@ type DatastoreCredentials struct {
 	Port     string `json:"port"`
 	Username string `json:"username"`
 	Password string `json:"password"`
+	Driver   string `json:"driver"`
 }
 
 type Datastore interface {
