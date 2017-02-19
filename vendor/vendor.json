@@ -1,0 +1,37 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "ACIDUcWOyCfysltUorUeDaUoIPo=",
+			"path": "github.com/auto-profile/stackimpact-go",
+			"revision": "5ced0d3128a773de38e0ab89daab2ddd37380a8a",
+			"revisionTime": "2017-02-19T19:33:25Z"
+		},
+		{
+			"checksumSHA1": "+fQO2mfXXAj3e1JwXs/eddhcwXk=",
+			"path": "github.com/auto-profile/stackimpact-go/internal",
+			"revision": "5ced0d3128a773de38e0ab89daab2ddd37380a8a",
+			"revisionTime": "2017-02-19T19:33:25Z"
+		},
+		{
+			"checksumSHA1": "fYUeL9YDVxQNmETglGhNSG1Uec0=",
+			"path": "github.com/auto-profile/stackimpact-go/internal/pprof/profile",
+			"revision": "5ced0d3128a773de38e0ab89daab2ddd37380a8a",
+			"revisionTime": "2017-02-19T19:33:25Z"
+		},
+		{
+			"checksumSHA1": "XklTy+xwx40COB82s0/HFLby5zo=",
+			"path": "github.com/auto-profile/stackimpact-go/internal/pprof/trace",
+			"revision": "5ced0d3128a773de38e0ab89daab2ddd37380a8a",
+			"revisionTime": "2017-02-19T19:33:25Z"
+		},
+		{
+			"checksumSHA1": "F5dR3/i70EhSIMZfeIV+H8/PtvM=",
+			"path": "github.com/gorilla/mux",
+			"revision": "94e7d24fd285520f3d12ae998f7fdd6b5393d453",
+			"revisionTime": "2017-02-17T19:26:16Z"
+		}
+	],
+	"rootPath": "github.com/auto-profile/server"
+}
