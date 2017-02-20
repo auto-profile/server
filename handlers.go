@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"github.com/gorilla/mux"
 	"io/ioutil"
+	"github.com/auto-profile/server/driver"
 )
 
 func (e *Env) MetricHandler(w http.ResponseWriter, r *http.Request) {
@@ -26,7 +27,9 @@ func (e *Env) MetricHandler(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Bad application/gzip request"))
 	}
 
-	var req map[string]interface{}
+	fmt.Println(string(raw))
+
+	var req driver.Entry
 	err = json.Unmarshal(raw, &req)
 
 	if err != nil {
@@ -34,21 +37,7 @@ func (e *Env) MetricHandler(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Could not unmarshal request"))
 	}
 
-	appName, ok := req["app_name"]
-
-	if !ok {
-		w.WriteHeader(400)
-		w.Write([]byte("Request missing required key: app_name"))
-	}
-
-	app, ok := appName.(string)
-
-	if !ok {
-		w.WriteHeader(400)
-		w.Write([]byte("app_name must be string"))
-	}
-
-	err = e.dataStore.Publish(raw, app)
+	err = e.dataStore.Publish(req, req.AppName)
 
 	if err != nil {
 		w.WriteHeader(500)
