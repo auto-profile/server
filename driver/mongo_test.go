@@ -1,8 +1,8 @@
 package driver
 
 import (
-	"testing"
 	"gopkg.in/mgo.v2"
+	"testing"
 )
 
 func TestNewMongoDriver(t *testing.T) {
@@ -44,11 +44,11 @@ func TestMongoDriver_ConnectWithoutCredentials(t *testing.T) {
 
 func TestMongoDriver_Publish(t *testing.T) {
 	m := &MongoDriver{
-		insert: func(data []byte, app string) error {
+		insert: func(data Entry, app string) error {
 			return nil
 		},
 	}
-	err := m.Publish([]byte("test"), "test_app")
+	err := m.Publish(Entry{}, "test_app")
 
 	if err != nil {
 		t.Errorf("Shouldn't have received error with nil insert func, got %s", err)
