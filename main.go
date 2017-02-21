@@ -6,11 +6,12 @@ import (
 
 	"encoding/json"
 	"flag"
+	"io/ioutil"
+	"os"
+
 	"github.com/auto-profile/server/driver"
 	stackimpact "github.com/auto-profile/stackimpact-go"
 	"github.com/gorilla/mux"
-	"io/ioutil"
-	"os"
 )
 
 type Env struct {
@@ -51,6 +52,8 @@ func main() {
 	switch credentials.Driver {
 	case "mongo":
 		env.dataStore = driver.NewMongoDriver()
+	case "elasticsearch":
+		env.dataStore = driver.NewElasticsearchDriver()
 	default:
 		panic(fmt.Sprintf("Use of unsupported driver: %s", credentials.Driver))
 	}
