@@ -11,6 +11,7 @@ type DatastoreCredentials struct {
 type Datastore interface {
 	Connect(DatastoreCredentials) error
 	Publish(Entry, string) error
+	Get(app string, category string, resolution int) ([]Entry, error)
 	Close() error
 }
 

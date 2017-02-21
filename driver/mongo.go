@@ -2,6 +2,8 @@ package driver
 
 import (
 	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
+	"time"
 )
 
 type MongoDriver struct {
@@ -38,6 +40,21 @@ func (m *MongoDriver) Connect(credentials DatastoreCredentials) (err error) {
 
 func (m *MongoDriver) Publish(data Entry, appName string) error {
 	return m.insert(data, appName)
+}
+
+func (m *MongoDriver) Get(app string, category string, resolution int) (entries []Entry, err error) {
+	var entry Entry
+	it := m.session.DB(app).C("profile").Find(bson.M{
+		"payload.messages.content.category": category,
+		"appname": app,
+		"runts": bson.M{"$gte": time.Now().Unix()-int64(resolution)}}).Iter()
+
+	for it.Next(&entry) {
+		entries = append(entries, entry)
+	}
+
+	err = it.Close()
+	return entries, err
 }
 
 func (m *MongoDriver) Close() error {

@@ -69,6 +69,7 @@ func main() {
 
 	router := mux.NewRouter().StrictSlash(true)
 	v1 := router.PathPrefix("/agent/v1").Subrouter()
+	v1.HandleFunc("/metrics", env.GetMetricsHandler)
 	v1.HandleFunc("/{type}", env.MetricHandler)
 	err = http.ListenAndServe(":8080", router)
 	if err != nil {
