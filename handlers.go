@@ -6,9 +6,9 @@ import (
 	"net/http"
 
 	"encoding/json"
+	"github.com/auto-profile/server/driver"
 	"github.com/gorilla/mux"
 	"io/ioutil"
-	"github.com/auto-profile/server/driver"
 )
 
 func (e *Env) MetricHandler(w http.ResponseWriter, r *http.Request) {
@@ -52,9 +52,9 @@ func (e *Env) MetricHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 type GetMetricsRequest struct {
-	App string `json:"app_name"`
-	Resolution int `json:"resolution"`
-	Category string `json:"category"`
+	App        string `json:"app_name"`
+	Resolution int    `json:"resolution"`
+	Category   string `json:"category"`
 }
 
 func (e *Env) GetMetricsHandler(w http.ResponseWriter, r *http.Request) {

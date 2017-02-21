@@ -46,10 +46,17 @@ func (m *MongoDriver) Get(app string, category string, resolution int) (entries 
 	var entry Entry
 	it := m.session.DB(app).C("profile").Find(bson.M{
 		"payload.messages.content.category": category,
-		"appname": app,
-		"runts": bson.M{"$gte": time.Now().Unix()-int64(resolution)}}).Iter()
+		"appname":                           app,
+		"runts":                             bson.M{"$gte": time.Now().Unix() - int64(resolution)}}).Iter()
 
 	for it.Next(&entry) {
+		var messages []Message
+		for _, msg := range entry.Payload.Messages {
+			if msg.Content.Category == category {
+				messages = append(messages, msg)
+			}
+		}
+		entry.Payload.Messages = messages
 		entries = append(entries, entry)
 	}
 
