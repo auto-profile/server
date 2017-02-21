@@ -35,6 +35,10 @@ func NewElasticsearchDriver() *ElasticsearchDriver {
 	}
 }
 
+func (e *ElasticsearchDriver) Get(string, string, int) (entries []Entry, err error) {
+	return
+}
+
 // Connect constructs the host that requests will be sent to
 func (e *ElasticsearchDriver) Connect(credentials DatastoreCredentials) (err error) {
 	if e.client == nil {
