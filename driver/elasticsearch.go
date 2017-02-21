@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-// ErrorResponse is the JSON response for non-201 insertion of new documents
+// ErrorResponse is the JSON response for non-201 insertion of new documents in Elasticsearch
 type ErrorResponse struct {
 	Error struct {
 		CausedBy struct {
