@@ -1,5 +1,11 @@
+/*
+Package driver implements a simple interface for storing captured metric data
+in an external data store
+*/
 package driver
 
+// DatastoreCredentials represents all of the details of the external data
+// store that metrics are inserted into
 type DatastoreCredentials struct {
 	Hostname string `json:"hostname"`
 	Port     string `json:"port"`
@@ -8,12 +14,14 @@ type DatastoreCredentials struct {
 	Driver   string `json:"driver"`
 }
 
+// Datastore manages interaction with the external data store
 type Datastore interface {
 	Connect(DatastoreCredentials) error
 	Publish(Entry, string) error
 	Close() error
 }
 
+// Entry represents all of the data forwarded by the agent
 type Entry struct {
 	RuntimeVersion string  `json:"runtime_version"`
 	AppEnvironment string  `json:"app_environment"`
@@ -29,15 +37,18 @@ type Entry struct {
 	BuildID        string  `json:"build_id"`
 }
 
+// Payload represents a list of messages
 type Payload struct {
 	Messages []Message `json:"messages"`
 }
 
+// Message represents the content and topic
 type Message struct {
 	Content Content `json:"content"`
 	Topic   string  `json:"topic"`
 }
 
+// Content represents data about a metric
 type Content struct {
 	Category    string      `json:"category"`
 	ID          string      `json:"id"`
@@ -47,6 +58,7 @@ type Content struct {
 	Unit        string      `json:"unit"`
 }
 
+// Measurement represents the actual value of the metric and other metadata
 type Measurement struct {
 	Value     int       `json:"value"`
 	Breakdown Breakdown `json:"breakdown"`
@@ -55,6 +67,8 @@ type Measurement struct {
 	Trigger   string    `json:"trigger"`
 }
 
+// Breakdown represents an optional further breakdown of the metric into by the
+// call tree
 type Breakdown struct {
 	NumSamples  int         `json:"num_samples"`
 	Measurement float64     `json:"measurement"`

@@ -6,11 +6,13 @@ import (
 	"net/http"
 
 	"encoding/json"
-	"github.com/gorilla/mux"
 	"io/ioutil"
+
 	"github.com/auto-profile/server/driver"
+	"github.com/gorilla/mux"
 )
 
+// MetricHandler accepts a metrics request and stores it in a data store
 func (e *Env) MetricHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	fmt.Printf("Type of request: %s\n", vars["type"])

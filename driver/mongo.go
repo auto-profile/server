@@ -4,6 +4,8 @@ import (
 	"gopkg.in/mgo.v2"
 )
 
+// MongoDriver implements the Datastore interface for inserting documents into
+// MongoDB
 type MongoDriver struct {
 	session      *mgo.Session
 	advancedDial func(*mgo.DialInfo) (*mgo.Session, error)
@@ -11,6 +13,7 @@ type MongoDriver struct {
 	insert       func(Entry, string) error
 }
 
+// NewMongoDriver returns a new MongoDriver
 func NewMongoDriver() *MongoDriver {
 	m := &MongoDriver{
 		advancedDial: mgo.DialWithInfo,
@@ -22,6 +25,7 @@ func NewMongoDriver() *MongoDriver {
 	return m
 }
 
+// Connect creates a session to a MongoDB instance
 func (m *MongoDriver) Connect(credentials DatastoreCredentials) (err error) {
 	if credentials.Username != "" {
 		m.session, err = m.advancedDial(&mgo.DialInfo{
@@ -36,10 +40,12 @@ func (m *MongoDriver) Connect(credentials DatastoreCredentials) (err error) {
 	return err
 }
 
+// Publish inserts data into a MongoDB collection
 func (m *MongoDriver) Publish(data Entry, appName string) error {
 	return m.insert(data, appName)
 }
 
+// Close closes the MongoDB session
 func (m *MongoDriver) Close() error {
 	m.session.Close()
 	return nil

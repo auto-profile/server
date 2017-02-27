@@ -11,7 +11,8 @@ import (
 	"time"
 )
 
-// ErrorResponse is the JSON response for non-201 insertion of new documents in Elasticsearch
+// ErrorResponse is the JSON response for non-201 insertion of new documents in
+// Elasticsearch
 type ErrorResponse struct {
 	Error struct {
 		CausedBy struct {
@@ -20,7 +21,8 @@ type ErrorResponse struct {
 	} `json:"error"`
 }
 
-// ElasticsearchDriver is a driver for inserting documents into Elasticsearch
+// ElasticsearchDriver implements the Datastore interface for inserting
+// documents into Elasticsearch
 type ElasticsearchDriver struct {
 	client *http.Client
 	host   string

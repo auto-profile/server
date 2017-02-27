@@ -14,6 +14,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// Env represents the environment that HTTP handlers respond to requests with
 type Env struct {
 	dataStore driver.Datastore
 }
