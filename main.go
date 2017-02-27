@@ -20,10 +20,12 @@ type Env struct {
 
 var (
 	configPath string
+	port       string
 )
 
 func init() {
 	flag.StringVar(&configPath, "configPath", "config.json", "Path to configuration file")
+	flag.StringVar(&port, "port", "8080", "Port on which the HTTP server should run")
 	flag.Parse()
 }
 
@@ -66,7 +68,7 @@ func main() {
 
 	agent := stackimpact.NewAgent()
 	agent.Start(stackimpact.Options{
-		DashboardAddress: "http://localhost:8080",
+		DashboardAddress: fmt.Sprintf("http://localhost:%s", port),
 		AppName:          "test_server",
 	})
 
